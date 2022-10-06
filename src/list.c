@@ -23,18 +23,27 @@ void add(node *head, int x){
 
 int size(node *l){
     // Excercise 3b)
-    // Add your code here... 
+    assert(l != NULL); /* Precondition: the list must have a size, therefor the first element cannot be NULL */
+    int num_elements = 0; /* Number of elements in list */
+    node *p = l;
 
-    return -1;
+    /* Loop calculating number of elements in a list */
+    while(p->next != NULL){ /* Loop stops when reaching last element cotaining NULL */
+      num_elements++; /* Counting numbers of elements*/
+      p = p->next; /* Moving to next element */
+    }
+    return num_elements;
 }
 
 void printout(node *l) {
   /*Excercise 3d) Implement your changes.. 
     pre: head points to the first, empty element. The last element's next is NULL
     post: the values of the list are printed out*/
+    assert(l != NULL); /* Precondition */
     node *p = l->next;
     while (p!=NULL){
       printf("%d, ",p->data);
+      p = p->next; /* Correction here. Updates the pointer to the next element */
     }
     printf("\n");
 }
@@ -43,6 +52,19 @@ int largest(node *l){
     /*Excercise 3e) Add your code below.
       pre: head points to the first, empty element. The last element's next is NULL. size(l>0)
       post: returns the largest value of the list*/
-    return -1; 
-}
+    assert(size(l) > 0); /* Precondition: The size must be larger than zero */
+    assert (l != NULL); /* Precondtion */
+    node *p = l;
+    int max = 0; /* Max value in list*/
 
+    /* Loop running through each element in a list and finding the largest value*/
+    while(p != NULL){
+      /* When the if-statement is true, max gets assigned the largest value in the list */
+      if(p->data > max){
+        max = p->data;
+      }
+      p = p->next; 
+    }
+    return max; 
+} 
+ 
